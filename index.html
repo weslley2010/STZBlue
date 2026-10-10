@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="pt-BR"><head><meta charset="utf-8">
+<meta name="theme-color" content="#0b3a9e">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>STZBLUE</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#eef4ff;--card:#fff;--tx:#0f1f3d;--mut:#5a6b8c;--br:#d6e2fa;--ac:#1d4ed8;--hd:#0b3a9e;--ok:#15803d;--warn:#b45309;--bad:#b91c1c;--tr:#e3ecff;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0a1122;--card:#121c33;--tx:#e9f0ff;--mut:#9fb0d3;--br:#22305290;--ac:#6d96ff;--hd:#10265c;--ok:#4ade80;--warn:#fbbf24;--bad:#f87171;--tr:#1d2b4b}}
+:root[data-theme="dark"]{--bg:#0a1122;--card:#121c33;--tx:#e9f0ff;--mut:#9fb0d3;--br:#22305290;--ac:#6d96ff;--hd:#10265c;--ok:#4ade80;--warn:#fbbf24;--bad:#f87171;--tr:#1d2b4b}
+html{scroll-padding-top:env(safe-area-inset-top,0px);height:100%}*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--tx);font:400 16px/1.45 'Plus Jakarta Sans',system-ui,sans-serif}
+header{position:sticky;top:env(safe-area-inset-top,0px);background:linear-gradient(135deg,var(--hd),#2563eb);z-index:5;padding:12px 12px 8px;color:#fff}
+.top{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
+.brand{font-size:24px;font-weight:800;letter-spacing:.5px}.brand span{color:#8fb4ff}
+#bell{border:0;border-radius:99px;background:#ffffff26;color:#fff;font:700 13px inherit;padding:6px 12px;cursor:pointer}
+#bell.al{background:#fff;color:var(--bad)}
+nav{display:flex;gap:4px;overflow-x:auto}
+nav button{flex:1 0 auto;border:0;background:none;color:#cfe0ff;font:600 14px inherit;padding:8px 12px;border-radius:9px;cursor:pointer}
+nav button.on{background:#fff;color:var(--hd)}
+main{max-width:640px;margin:0 auto;padding:6px 14px 40px}
+.card{background:var(--card);border:1px solid var(--br);border-radius:18px;padding:16px;margin:12px 0;box-shadow:0 8px 20px -12px rgba(20,60,160,.4)}
+h3{margin:0 0 8px;font-size:17px;font-weight:800}.head h3{margin:0}
+small{color:var(--mut);font-size:13px}
+.sum{display:flex;gap:10px}.sum>div{flex:1}.big{display:block;font-size:30px;font-weight:800;color:var(--ac);line-height:1.1}
+.row{display:grid;grid-template-columns:92px 1fr 36px;gap:8px;align-items:center;margin:8px 0;font-size:14px}
+.row span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.row b{text-align:right}
+.bar{position:relative;height:12px;background:var(--tr);border-radius:6px}
+.bar i{position:absolute;left:0;top:0;bottom:0;border-radius:6px}
+.bar u{position:absolute;top:-3px;bottom:-3px;width:2px;background:var(--tx);opacity:.5}
+.head{display:flex;justify-content:space-between;align-items:center;gap:8px}
+.pill{font-size:12px;font-weight:800;padding:3px 9px;border-radius:99px;border:1.5px solid currentColor;white-space:nowrap}
+.ok{color:var(--ok)}.warn{color:var(--warn)}.bad{color:var(--bad)}.mut{color:var(--mut)}
+.al{padding:8px 10px;margin:6px 0;border-radius:9px;font-size:14px;font-weight:600;border-left:4px solid currentColor;background:var(--tr)}
+.tri{display:flex;gap:8px;margin-top:10px}.tri>div{flex:1;text-align:center}
+.col{height:56px;background:var(--tr);border-radius:8px;position:relative;overflow:hidden;margin-bottom:4px}
+.col i{position:absolute;left:0;right:0;bottom:0}
+.tri b{display:block;font-size:15px}.ty{margin:10px 0 0;font-size:13px;color:var(--mut)}
+.chips{display:flex;gap:6px;flex-wrap:wrap;margin:8px 0}
+.chip{border:1.5px solid var(--br);background:var(--card);color:var(--tx);padding:6px 12px;border-radius:99px;font:600 14px inherit;cursor:pointer}
+.chip.on{border-color:var(--ac);background:var(--ac);color:#fff}
+.f{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}
+input,select{font:400 16px inherit;padding:9px 10px;border:1.5px solid var(--br);border-radius:10px;background:var(--bg);color:var(--tx);min-width:0}
+.f input,.f select{flex:1 1 100px}
+input:focus,select:focus,button:focus-visible{outline:2px solid var(--ac);outline-offset:1px}
+.btn{border:0;background:var(--ac);color:#fff;font:800 15px inherit;padding:10px 16px;border-radius:10px;cursor:pointer}
+.li{display:flex;justify-content:space-between;align-items:center;gap:8px;padding:8px 0;border-top:1px solid var(--br);font-size:15px}
+.li:first-of-type{border-top:0}.dn{text-decoration:line-through;color:var(--mut)}
+.x{border:0;background:none;color:var(--mut);font-size:18px;cursor:pointer;padding:2px 8px}
+.att{font-size:13px;color:var(--mut)}.att button{border:1.5px solid var(--br);background:var(--card);color:var(--ac);border-radius:7px;width:28px;height:28px;font-weight:800;cursor:pointer}
+.empty{text-align:center;color:var(--mut)}
+.dot{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:8px}
+.cal{display:grid;grid-template-columns:repeat(7,1fr);gap:3px;margin-top:8px;text-align:center}
+.cal small{font-weight:700}
+.day{position:relative;border:0;background:var(--tr);color:var(--tx);border-radius:8px;padding:8px 0;font:600 14px inherit;cursor:pointer}
+.day.hj{outline:2px solid var(--ac)}.day.on{background:var(--ac);color:#fff}
+.day em{position:absolute;left:50%;bottom:3px;width:5px;height:5px;margin-left:-2.5px;border-radius:50%;background:var(--ac)}
+.day.on em{background:#fff}.day em.bad{background:var(--bad)}
+label{display:block}label input,label select{width:100%;margin:2px 0 8px}
+.bt{display:flex;gap:2px;overflow-x:auto;border-bottom:1px solid var(--br);margin:6px 0 8px}
+.bt button{flex:0 0 auto;border:0;border-bottom:3px solid transparent;background:none;color:var(--mut);font:700 14px inherit;padding:10px 12px;cursor:pointer}
+.bt button.on{color:var(--ac);border-color:var(--ac)}
+.sr{background:var(--card);border:1px solid var(--br);border-radius:14px;margin:8px 0;overflow:hidden}
+.hd{display:flex;align-items:center;gap:12px;padding:12px 14px;cursor:pointer}.hd>div:nth-child(2){flex:1}
+.cir{flex:0 0 46px;width:46px;height:46px;border-radius:50%;background:var(--ac);color:#fff;font-weight:800;display:grid;place-items:center}
+.cir.r{background:var(--bad)}.cir.n{background:var(--mut)}.cir.sm{flex-basis:38px;width:38px;height:38px;font-size:14px}
+.ir{display:flex;align-items:center;gap:12px;padding:8px 14px 8px 22px;background:var(--tr);margin:0}
+.ir span:nth-child(2){flex:1}.ir input{width:84px;margin:0;text-align:center}
+table{width:100%;border-collapse:collapse;font-size:14px;text-align:center;margin-top:6px}th,td{padding:7px 2px;border-top:1px solid var(--br)}th{font-weight:600;color:var(--mut);text-align:left;font-size:13px}tr:first-child th{text-align:center;border:0}td:last-child{font-weight:800}td.bad{font-weight:800}
+.ir .nm{flex:1;width:auto;text-align:left}
+textarea{width:100%;font:400 14px inherit;padding:10px;border:1.5px solid var(--br);border-radius:10px;background:var(--bg);color:var(--tx);margin-top:8px}
+.rt{position:relative;display:flex;gap:6px;align-items:center}
+#dots{border:0;background:#ffffff26;color:#fff;font:800 20px inherit;width:34px;height:32px;border-radius:99px;cursor:pointer}
+#menu{position:absolute;right:0;top:40px;background:var(--card);border:1px solid var(--br);border-radius:12px;box-shadow:0 6px 20px rgba(0,0,0,.25);min-width:190px;overflow:hidden;z-index:9}
+#menu button{display:block;width:100%;text-align:left;border:0;background:none;color:var(--tx);font:600 15px inherit;padding:12px 14px;cursor:pointer}
+.hero{display:flex;align-items:center;gap:16px}.lg div{display:flex;align-items:center;gap:8px;font-size:14px;margin:4px 0}.lg i{width:10px;height:10px;border-radius:50%}
+.row[onclick]{cursor:pointer}.row.on span{font-weight:800;color:var(--ac)}
+.hm td{border:2px solid var(--card);border-radius:8px;font-weight:700}.hm .ok2{background:color-mix(in srgb,var(--ok) 24%,transparent)}.hm .wr2{background:color-mix(in srgb,var(--warn) 26%,transparent)}.hm .bd2{background:color-mix(in srgb,var(--bad) 24%,transparent)}.hm th{white-space:nowrap;padding-right:6px}
+.tp{display:flex;align-items:center;gap:10px;margin-top:8px}.tp span{width:64px;font-weight:700;color:var(--mut);font-size:14px}.tp select{flex:1;margin:0}
+.ctr{display:flex;gap:12px;margin-top:10px}.ctr>div{flex:1;background:var(--tr);border-radius:14px;padding:10px;text-align:center}
+.stp{display:flex;align-items:center;justify-content:space-between;margin-top:6px}.stp b{font-size:26px}
+.stp button{width:38px;height:38px;border-radius:50%;border:0;background:var(--card);color:var(--ac);font:800 22px inherit;cursor:pointer;box-shadow:0 2px 6px rgba(0,0,0,.15)}.stp.f button{color:var(--bad)}
+.mo{margin-top:8px}.ct{color:var(--mut)}.day em.hl{background:var(--warn)}.yl{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px}
+.sm2{font-size:10px;color:var(--mut);letter-spacing:.3px}.ir.xr{flex-wrap:wrap;padding-bottom:10px}.xl{display:flex;gap:8px;align-items:center;width:100%}.xl+.xl{padding-left:0}.ir select{flex:1;min-width:0;margin:0}.cir.mn{box-shadow:0 0 0 3px var(--card),0 0 0 5px var(--ac)}
+.ic{vertical-align:-3px;flex:0 0 auto}h3 .ic{margin-right:6px;color:var(--ac)}.cir{position:relative}.tg{cursor:pointer}
+.pen{position:absolute;inset:0;border-radius:50%;border:0;background:rgba(10,25,60,.85);color:#fff;display:grid;place-items:center;opacity:0;pointer-events:none;cursor:pointer}.cir.pe-on .pen{opacity:1;pointer-events:auto}
+@media (hover:hover){.cir:hover .pen{opacity:1;pointer-events:auto}}
+.ov{position:fixed;inset:0;background:rgba(8,16,40,.55);display:grid;place-items:center;z-index:50;padding:20px}.mdl{background:var(--card);border-radius:20px;padding:20px;width:100%;max-width:340px;box-shadow:0 20px 50px rgba(0,0,0,.4)}
+.gr{color:#e5eeff;font-weight:700;font-size:15px;margin:-2px 0 8px}
+.mh{display:flex;justify-content:space-between;align-items:center;width:100%;border:0;background:none;color:var(--tx);font:inherit;padding:0;cursor:pointer}.mh b{font-size:17px}.mh span{display:flex;align-items:center;gap:8px}.mo2{padding:14px 16px}.dp{margin-top:12px;padding-top:12px;border-top:1px solid var(--br)}
+.day.off{opacity:.35}.day:disabled{cursor:default}.day.hl{background:color-mix(in srgb,var(--warn) 28%,transparent)}.day.ok3{background:color-mix(in srgb,var(--ok) 30%,transparent)}.day.bad2{background:color-mix(in srgb,var(--bad) 30%,transparent)}.day.on{background:var(--ac);color:#fff}.chip.fl{border-color:var(--bad);background:var(--bad);color:#fff}
+.day.nc{background:var(--tr);text-decoration:line-through;opacity:.7}.day.sb{border:1.5px dashed var(--br)}
+.day.sat{background:color-mix(in srgb,var(--tr) 40%,transparent);color:color-mix(in srgb,var(--tx) 38%,transparent);cursor:default}.day .pen{border-radius:8px}.day.pe-on .pen{opacity:1;pointer-events:auto}
+@media (hover:hover){.day:hover .pen{opacity:1;pointer-events:auto}}
+.lt{display:flex;align-items:center;gap:10px;min-width:0}
+#hm{border:0;background:#ffffff26;color:#fff;width:38px;height:36px;border-radius:12px;cursor:pointer;display:grid;place-items:center}
+.ttl{font-size:20px;font-weight:800;line-height:1.1}
+.dw{position:fixed;inset:0;z-index:60;pointer-events:none}.dw.on{pointer-events:auto}
+.dwo{position:absolute;inset:0;background:rgba(8,16,40,.5);opacity:0;transition:opacity .2s}.dw.on .dwo{opacity:1}
+.dwp{position:absolute;left:0;top:0;bottom:0;width:min(84vw,320px);background:var(--card);transform:translateX(-100%);transition:transform .22s;overflow:auto;box-shadow:8px 0 30px rgba(0,0,0,.3)}.dw.on .dwp{transform:none}
+.dwh{background:linear-gradient(160deg,var(--hd),#2563eb);color:#fff;padding:calc(18px + env(safe-area-inset-top,0px)) 18px 18px;display:flex;flex-direction:column;gap:2px}
+.brand2{font-weight:800;letter-spacing:.5px;font-size:15px;opacity:.9;margin-bottom:14px}.brand2 span{color:#8fb4ff}
+.avt{position:relative;width:78px;height:78px;border-radius:50%;background:#ffffff30;border:3px solid #ffffff90;display:grid;place-items:center;font-size:28px;font-weight:800;cursor:pointer;margin-bottom:8px}
+.avt img{width:100%;height:100%;object-fit:cover;border-radius:50%}.avt i{position:absolute;right:-4px;bottom:-4px;width:26px;height:26px;border-radius:50%;background:#fff;color:var(--hd);display:grid;place-items:center;font-style:normal}
+.dwh b{font-size:18px}.dwh small{color:#dbe7ff}
+.dwm{padding:10px 8px}.dwm button{display:flex;align-items:center;gap:14px;width:100%;border:0;background:none;color:var(--tx);font:600 16px inherit;padding:13px 14px;border-radius:12px;cursor:pointer;text-align:left}.dwm button .ic{color:var(--ac)}.dwm button.on{background:var(--tr);color:var(--ac)}.dwm hr{border:0;border-top:1px solid var(--br);margin:8px 12px}
+.sw{position:relative;width:46px;height:28px;border-radius:99px;border:0;background:var(--br);cursor:pointer;flex:0 0 46px}.sw i{position:absolute;top:3px;left:3px;width:22px;height:22px;border-radius:50%;background:#fff;transition:left .15s;box-shadow:0 1px 3px rgba(0,0,0,.3)}.sw.on{background:var(--ac)}.sw.on i{left:21px}
+.big2{display:block;font-size:26px;font-weight:800;color:var(--ac);line-height:1.15}
+.tkh{background:linear-gradient(160deg,color-mix(in srgb,var(--ac) 10%,var(--card)),var(--card))}
+.tkn{border-left:5px solid var(--c)}.tkn b{display:block;font-size:17px;margin:2px 0}
+.sgm{display:flex;background:var(--tr);border-radius:12px;padding:3px;margin-top:6px}.sgm button{flex:1;border:0;background:none;color:var(--mut);font:700 14px inherit;padding:8px;border-radius:9px;cursor:pointer}.sgm button.on{background:var(--card);color:var(--ac);box-shadow:0 1px 3px rgba(0,0,0,.15)}
+.wk{display:flex;gap:6px}.wd{flex:1;min-width:0;border:1px solid var(--br);border-radius:16px;background:var(--card);padding:8px 0 6px;display:flex;flex-direction:column;align-items:center;gap:2px;cursor:pointer;color:var(--tx);font:inherit}.wd b{font-size:18px}.wd small{color:var(--mut);font-weight:700}
+.wd.hj{border-color:var(--ac)}.wd.on{background:linear-gradient(160deg,var(--hd),#2563eb);color:#fff;border-color:transparent;box-shadow:0 8px 18px -8px rgba(37,99,235,.7)}.wd.on small{color:#dbe7ff}.wd.out{opacity:.3;pointer-events:none}
+.dts{display:flex;gap:3px;height:6px}.dts i{width:5px;height:5px;border-radius:50%}
+.sec{font-size:12px;font-weight:800;letter-spacing:.5px;text-transform:uppercase;color:var(--mut);margin:18px 4px 2px}.sec.bad{color:var(--bad)}
+.tk{display:flex;gap:12px;align-items:flex-start;background:var(--card);border:1px solid var(--br);border-left:5px solid var(--c);border-radius:16px;padding:12px;margin:10px 0;box-shadow:0 8px 20px -14px rgba(20,60,160,.5)}
+.ck{width:26px;height:26px;flex:0 0 26px;border-radius:50%;border:2px solid var(--c);background:none;display:grid;place-items:center;color:#fff;cursor:pointer;padding:0;margin-top:1px}.tk.dn3 .ck{background:var(--c)}
+.tb{flex:1;min-width:0}.tt{font-weight:700;font-size:16px;line-height:1.25}.tk.dn3 .tt{text-decoration:line-through;color:var(--mut)}.tk.dn3{opacity:.75}
+.tm{display:flex;gap:6px;flex-wrap:wrap;align-items:center;margin-top:6px}
+.kp{display:inline-flex;align-items:center;gap:4px;font-size:12px;font-weight:700;padding:2px 9px;border-radius:99px;background:color-mix(in srgb,var(--c) 14%,transparent);color:var(--c)}
+.sb2{display:inline-flex;align-items:center;gap:4px;font-size:12px;font-weight:600;color:var(--mut);background:var(--tr);padding:2px 9px;border-radius:99px}.sb2.bad{color:var(--bad);background:color-mix(in srgb,var(--bad) 14%,transparent)}.sb2 .dot{width:8px;height:8px;margin:0}
+.dt2{margin-top:10px;padding-top:10px;border-top:1px dashed var(--br)}.cl{display:flex;align-items:center;gap:8px;padding:6px 0;font-size:15px}.cl span{flex:1}.cl.d span{text-decoration:line-through;color:var(--mut)}.cl input{width:20px;height:20px;accent-color:var(--ac)}
+.fab{position:fixed;right:18px;bottom:calc(18px + env(safe-area-inset-bottom,0px));width:58px;height:58px;border-radius:50%;border:0;background:linear-gradient(160deg,#1d4ed8,#3b82f6);color:#fff;box-shadow:0 12px 24px -8px rgba(29,78,216,.7);display:grid;place-items:center;cursor:pointer;z-index:30}
+.chip.kc .ic{color:var(--c)}.chip.kc.on{background:var(--c);border-color:var(--c);color:#fff}.chip.kc.on .ic{color:#fff}
+.ov.sheet{place-items:end center;padding:0}.mdl.sheet{max-width:560px;border-radius:24px 24px 0 0;max-height:92vh;overflow:auto;padding:20px 18px calc(20px + env(safe-area-inset-bottom,0px))}
+</style></head><body>
+<header><div class="top"><div class="lt"><button id="hm" aria-label="Menu" onclick="dr(true)"></button><div><div id="ttl" class="ttl"></div><small id="yl" style="color:#cfe0ff;font-weight:600;font-size:12px"></small></div></div><div class="rt"><button id="bell" onclick="go('painel')"></button><button id="dots" aria-label="Menu" onclick="$('#menu').hidden=!$('#menu').hidden"></button><div id="menu" hidden></div></div></div><div id="gr" class="gr"></div></header>
+<main id="app"></main>
+<div id="dw" class="dw"></div>
+<script>
+let K='stzblue.v1',S=null;
+function load(){S=null;try{S=JSON.parse(localStorage.getItem(K))}catch(e){}
+if(!S||(!S.subs&&!S.Y))S={np:4,avg:6,fq:75,me:{}};
+if(S.subs){S.Y={2026:{subs:S.subs,sched:S.sched||[],items:S.items||[],fm:S.fm||{}}};['subs','sched','items','fm'].forEach(k=>delete S[k])}
+S.Y=S.Y||{};S.yr=S.yr||2026;S.Y[S.yr]=S.Y[S.yr]||newY();bind();
+S.cfg=Object.assign({cn:1,cf:1,tema:'auto',am:1,af:1,ap:1,mg:.5,dias:2,pend:5},S.cfg||{});
+if(!S.fz){Object.values(S.Y).forEach(y=>{y.att={};(y.subs||[]).forEach(s=>{s.at={}})});S.fz=1;try{localStorage.setItem(K,JSON.stringify(S))}catch(e){}setTimeout(()=>push(true),0)}
+Object.values(S.Y).forEach(y=>{y.att=y.att||{};y.sched=Array.isArray(y.sched)?y.sched.slice().sort((a,b)=>(a.a||'').localeCompare(b.a||'')).reduce((o,a)=>{(o[a.d]=o[a.d]||[]).push(a.sid);return o},{}):(y.sched||{});(y.subs||[]).forEach(s=>{s.at=s.at||{};if(s.P||s.F){const m=td().slice(0,7),z=s.at[m]=s.at[m]||{P:0,F:0};z.P+=s.P||0;z.F+=s.F||0}delete s.P;delete s.F})});
+S.np=4;S.subs.forEach(s=>{if(Array.isArray(s.g)){const o={};s.g.forEach(x=>{const p=Math.min(4,x.p||1),k={Parcial:'a',Bimestral:'b',Formativa:'c'}[x.k]||(o[p]&&o[p].a!=null?'b':'a');o[p]=o[p]||{};if(o[p][k]==null)o[p][k]=x.v});s.g=o}Object.values(s.g).forEach(o=>delete o.e)});S.fm=S.fm||{};S.subs.forEach(s=>Object.keys(s.g).forEach(p=>{const o=s.g[p];if(o.c!=null&&S.fm[p]==null)S.fm[p]=o.c;delete o.c}));
+}
+const save=()=>{try{localStorage.setItem(K,JSON.stringify(S))}catch(e){}push()};
+const $=s=>document.querySelector(s),V=s=>$(s).value,p2=n=>String(n).padStart(2,'0');
+const esc=t=>String(t).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const uid=()=>Math.random().toString(36).slice(2,9),num=v=>parseFloat(String(v).replace(',','.'));
+const mean=a=>a.length?a.reduce((x,y)=>x+y,0)/a.length:null,f1=n=>n===null?'–':n.toFixed(1).replace('.',',');
+const td=()=>{const d=new Date();return d.getFullYear()+'-'+p2(d.getMonth()+1)+'-'+p2(d.getDate())};
+const dd=(a,b)=>Math.round((new Date(a+'T00:00')-new Date(b+'T00:00'))/864e5),fd=d=>d.split('-').reverse().slice(0,2).join('/');
+const COL=['#1d4ed8','#0ea5e9','#4338ca','#0891b2','#2563eb','#6366f1','#0284c7','#1e40af'];
+const DAYS=['Segunda','Terça','Quarta','Quinta','Sexta','Sábado'],KS=[['a','Prova parcial'],['b','Prova bimestral'],['c','Formativa']],KI=['Prova','Tarefa','Trabalho','Atividade','Evento','Feriado'];
+const MN=['Janeiro','Fevereiro','Março','Abril','Maio','Junho','Julho','Agosto','Setembro','Outubro','Novembro','Dezembro'];
+const TABS=[['painel','Painel','home'],['materias','Frequência','calc'],['boletim','Boletim','book'],['formativa','Formativa','edit'],['desempenho','Desempenho','chart'],['horario','Horário de aulas','clock'],['agenda','Tarefas e Provas','task'],['perfil','Perfil','user']];
+let tab='painel',ad=null,av='sem',agf='all',ax=null,ash=false,dwo=false,sq=null,ao=null,af=false,ak='Prova',adr={},fdy=null,hq=null,xe=null,pq=null,mq=null,yo=false,dp=0,ds=null,hdi=null,fmo=null,bk='',itx='',ipol='keep',ip=null,imsg='',bim=1,ex=null,sel=null,pend=null,sd=null,cm=[new Date().getFullYear(),new Date().getMonth()];
+const R=n=>[...Array(n)].map((_,i)=>i+1),gx=(s,p,k)=>(s.g[p]||{})[k];
+const xs=o=>{const X=o.x||[];return{n:X.filter(z=>(z.t||'e')==='n'&&z.v!=null).map(z=>z.v),e:X.filter(z=>(z.t||'e')==='e').reduce((t,z)=>t+(z.v||0),0)}};
+const pA=(s,p)=>{const o=s.g[p]||{};if(o.m===false)return null;if(o.m!=null)return o.m;const q=xs(o),own=[o.a,o.b,...q.n].filter(x=>x!=null);if(!own.length)return null;const m=mean([...own,S.fm[p]].filter(x=>x!=null));return Math.min(10,m+q.e)};
+const yA=s=>{const m=mean(R(4).map(p=>pA(s,p)).filter(x=>x!==null));return m===null||s.r==null?m:Math.max(m,(m+s.r)/2)};
+const tA=(s,k)=>mean(R(4).map(p=>k==='c'?S.fm[p]:gx(s,p,k)).filter(x=>x!=null));
+const tot=(s,key)=>{let P=0,F=0;Object.entries(s.at||{}).forEach(([k,m])=>{if(!key||k===key){P+=m.P||0;F+=m.F||0}});Object.entries(S.att||{}).forEach(([d,r])=>{if(key&&!d.startsWith(key))return;if(r.n||r.sat||isH(d))return;(S.sched[di(d)]||[]).forEach((id,i)=>{if(id===s.id){if((r.f||[]).includes(i))F++;else P++}})});return{P,F}};
+const fr=s=>{const t=tot(s),n=t.P+t.F;return n?t.P/n*100:null};
+const pdg=()=>S.items.filter(i=>!i.x&&i.k!=='Feriado');
+function stat(a){if(a===null)return['mut','Sem notas'];if(a>=S.avg)return['ok','Na média'];if(a>=S.avg-1)return['warn','Atenção'];return['bad','Abaixo da média']}
+function alerts(){const A=[],T=td(),C=S.cfg;
+ BS().forEach(s=>{const a=yA(s);if(a===null)return;const q=fr(s);
+  if(C.am){if(a<S.avg)A.push(['bad',`${s.n}: média ${f1(a)} abaixo de ${f1(S.avg)}`]);else if(a<S.avg+C.mg)A.push(['warn',`${s.n}: média ${f1(a)} no limite`])}
+  if(C.af&&q!==null){if(q<S.fq)A.push(['bad',`${s.n}: frequência ${Math.round(q)}% abaixo de ${S.fq}%`]);else if(q<S.fq+5)A.push(['warn',`${s.n}: frequência ${Math.round(q)}% perto do limite`])}});
+ if(C.ap){pdg().forEach(i=>{const n=dd(i.d,T);if(n<0)A.push(['bad','Atrasado: '+i.t]);else if(n<=C.dias)A.push(['warn',i.t+(n?` vence em ${n} dia(s)`:' é hoje')])});if(pdg().length>=C.pend)A.push(['warn','Muitas pendências: '+pdg().length+' itens'])}
+ return A}
+function painel(){const A=alerts(),av=BS().map(yA),fs=S.subs.map(fr).filter(x=>x!==null),T=td(),hj=(new Date().getDay()+6)%7,L=S.sched[hj]||[];
+ let h=`<div class="card sum"><div><small>Média geral</small><b class="big">${f1(mean(av.filter(x=>x!==null)))}</b></div><div><small>Frequência</small><b class="big">${fs.length?Math.round(mean(fs))+'%':'–'}</b></div><div><small>Pendências</small><b class="big">${pdg().length}</b></div></div>`;
+ h+=`<div class="card"><h3>${ic('book')} Aulas de hoje <small>· ${[...DAYS,'Domingo'][hj]}</small></h3>${L.some(Boolean)?L.map((id,i)=>{const s=S.subs.find(x=>x.id===id);return s?`<div class="li"><span><b style="display:inline-block;width:72px">${i+1}º tempo</b><span class="dot" style="background:${s.c}"></span>${esc(s.n)}</span></div>`:''}).join(''):`<small>${hj>4?'Hoje não tem aula.':'Nenhuma aula cadastrada para hoje. Cadastre na aba Horário de aulas.'}</small>`}</div>`;
+ {const ts=cls(T),r=(S.att||{})[T];if(ts.length&&!isH(T))h+=`<div class="card"><div class="head"><h3>${ic('calc')} Frequência de hoje</h3>${r?`<span class="pill ${r.n?'mut':r.f.length?'bad':'ok'}">${r.n?'Sem aula':r.f.length?'Com falta':'Presente'}</span>`:''}</div><div class="f"><button class="btn" onclick="reg('${T}',[])">Presente</button><button class="chip" onclick="reg('${T}',[${ts}])">Faltei</button><button class="chip" onclick="noc('${T}')">Sem aula</button><button class="chip${r?'':' on'}" onclick="clrD('${T}')">Indefinido</button></div></div>`}
+ h+=`<div class="card"><h3>${ic('bell')} Alertas</h3>${A.length?A.map(a=>`<div class="al ${a[0]}">${esc(a[1])}</div>`).join(''):'<small>Tudo em dia. Nenhum alerta.</small>'}</div>`;
+ const up=S.items.filter(i=>!i.x&&i.k!=='Feriado'&&dd(i.d,T)>=0&&dd(i.d,T)<=7).sort((a,b)=>a.d.localeCompare(b.d));
+ h+=`<div class="card"><h3>${ic('cal')} Próximos 7 dias</h3>${up.length?up.map(i=>{const n=dd(i.d,T);return `<div class="li"><span>${esc(i.t)} <small>${i.k}</small></span><b class="${n<=1?'warn':''}">${n?n+' dia(s)':'Hoje'}</b></div>`}).join(''):'<small>Nada marcado para os próximos dias.</small>'}</div>`;
+ if(BS().length)h+=`<div class="card"><h3>Média anual por matéria</h3>${BS().map((s,i)=>`<div class="row"><span>${esc(s.n)}</span><div class="bar"><i style="width:${(av[i]||0)*10}%;background:${s.c}"></i><u style="left:${S.avg*10}%"></u></div><b>${f1(av[i])}</b></div>`).join('')}</div>`;
+ return h+cad()}
+function materias(){
+ if(!S.subs.length)return '<div class="card empty">Cadastre suas matérias no <b>Painel</b>.</div>';
+ const T=td(),hs=new Set(hol().map(x=>x.d)),om=fmo===null?(T.startsWith(String(S.yr))?T.slice(0,7):''):fmo,sdy=fdy===null?(om===T.slice(0,7)?T:null):fdy,sa=Object.values(S.att||{}).filter(r=>r.sat),tt=S.subs.map(s=>tot(s)),P=tt.reduce((a,t)=>a+t.P,0)+sa.filter(r=>r.a===true).length,F=tt.reduce((a,t)=>a+t.F,0)+sa.filter(r=>r.a===false).length,q=P+F?P/(P+F)*100:null;
+ let h=`<div class="card hero">${ring(q,S.fq,96)}<div><small>Frequência geral · ${S.yr}</small><br><small>${P} presenças · ${F} faltas</small><br><small>Mínimo exigido: ${S.fq}%</small></div></div>`;
+ MN.forEach((mn,m)=>{const key=`${S.yr}-${p2(m+1)}`,rs=Object.entries(S.att||{}).filter(([d])=>d.startsWith(key)),pr=rs.filter(([,r])=>r.sat?r.a===true:!r.n&&!r.f.length).length,fa=rs.filter(([,r])=>r.sat?r.a===false:!r.n&&r.f.length).length,op=om===key;
+  h+=`<div class="card mo2"><button class="mh" onclick="fmo='${op?'':key}';fdy=null;render()"><b>${mn}</b><span><small>${pr+fa?pr+' presença'+(pr>1?'s':'')+(fa?' · '+fa+' falta'+(fa>1?'s':''):''):''}</small> ${ic(op?'cu':'cd',18)}</span></button>`;
+  if(op){const f=new Date(S.yr,m,1).getDay(),nd=new Date(S.yr,m+1,0).getDate();let g=['D','S','T','Q','Q','S','S'].map(x=>`<small>${x}</small>`).join('')+'<i></i>'.repeat(f);
+   for(let d=1;d<=nd;d++){const ds=`${key}-${p2(d)}`,sat=new Date(ds+'T00:00').getDay()===6,c=cls(ds).length,r=(S.att||{})[ds],hl=hs.has(ds);let st='off',oc='';
+    if(hl)st='hl';else if(sat){st=r?(r.a===true?'ok3':r.a===false?'bad2':'sb'):'sat';oc=r?`fdy='${ds}';render()`:''}else if(c){st=r?(r.n?'nc':r.f.length?'bad2':'ok3'):'';oc=`fdy='${ds}';render()`}
+    g+=sat&&!r&&!hl?`<div class="day sat${ds===T?' hj':''}${pq==='sat.'+ds?' pe-on':''}" onclick="pq=pq==='sat.${ds}'?null:'sat.${ds}';render()">${d}<button class="pen" aria-label="Adicionar frequência" onclick="event.stopPropagation();pq=null;sq={d:'${ds}',step:1};render()">${ic('edit',16)}</button></div>`:`<button class="day ${st}${ds===T?' hj':''}${ds===sdy?' on':''}" ${oc?`onclick="${oc}"`:'disabled'}>${d}</button>`}
+   const ms=S.subs.map(s=>[s,tot(s,key)]),sm=rs.filter(([,r])=>r.sat),mP=ms.reduce((a,[,t])=>a+t.P,0)+sm.filter(([,r])=>r.a===true).length,mF=ms.reduce((a,[,t])=>a+t.F,0)+sm.filter(([,r])=>r.a===false).length,mq=mP+mF?mP/(mP+mF)*100:null;
+   h+=`<div class="hero" style="margin:12px 0 6px">${ring(mq,S.fq,84)}<div><small>Frequência de ${mn}</small><br><small>${mP} presenças · ${mF} faltas</small></div></div>${ms.filter(([,t])=>t.P+t.F).map(([s,t])=>{const p=t.P/(t.P+t.F)*100;return `<div class="row"><span>${esc(s.n)}</span><div class="bar"><i style="width:${p}%;background:${p<S.fq?'var(--bad)':s.c}"></i><u style="left:${S.fq}%"></u></div><b>${Math.round(p)}%</b></div>`}).join('')}`;
+   h+=`<div class="cal">${g}</div>`+(sdy&&sdy.startsWith(key)&&(cls(sdy).length||((S.att||{})[sdy]||{}).sat)?fdp(sdy):'')}
+  h+='</div>'});
+ return h+S.subs.map((s,i)=>`<div class="card"><div class="head"><div><h3><span class="dot" style="background:${s.c}"></span>${esc(s.n)}</h3><small>${ic('user',14)} ${esc(s.pr||'Professor não informado')}</small></div>${ring(fr(s),S.fq,60)}</div><small>${tt[i].P} presenças · ${tt[i].F} faltas</small><br><small>${mg(s)}</small></div>`).join('')}
+const cc=v=>v==null?'n':v<S.avg?'r':'',n1=v=>f1(v==null?null:v);
+const tr=s=>{const a=R(4).map(p=>pA(s,p)).filter(x=>x!==null);if(a.length<2)return'';const d=a[a.length-1]-a[a.length-2];return `<p class="ty" style="color:var(--${d<0?'bad':'ok'})">${ic(d<0?'ad':'au',14)} ${f1(Math.abs(d))} em relação ao bimestre anterior</p>`};
+function desempenho(){
+ if(!BS().length)return '<div class="card empty">Cadastre suas matérias no <b>Painel</b>.</div>';
+ const vs=BS().map(s=>dp?pA(s,dp):yA(s)),ge=mean(vs.filter(x=>x!==null)),cur=BS().find(s=>s.id===ds)||BS()[0],
+ seg=[[vs.filter(x=>x!==null&&x>=S.avg).length,'var(--ok)','Na média'],[vs.filter(x=>x!==null&&x<S.avg&&x>=S.avg-1).length,'var(--warn)','Atenção'],[vs.filter(x=>x!==null&&x<S.avg-1).length,'var(--bad)','Abaixo'],[vs.filter(x=>x===null).length,'var(--tr)','Sem notas']],
+ C=2*Math.PI*40,ord=BS().map((s,i)=>[s,vs[i]]).sort((a,b)=>(b[1]===null?-1:b[1])-(a[1]===null?-1:a[1])),
+ ty=KS.slice(0,3).map(z=>[z[1],tA(cur,z[0])]).filter(x=>x[1]!==null),st=stat(yA(cur));let off=0;
+ const donut=`<svg viewBox="0 0 100 100" width="132" height="132"><circle cx="50" cy="50" r="40" fill="none" stroke="var(--tr)" stroke-width="13"/><g transform="rotate(-90 50 50)" fill="none" stroke-width="13">${seg.map(([n,c])=>{const l=C*n/BS().length,o=off;off+=l;return n&&c!=='var(--tr)'?`<circle cx="50" cy="50" r="40" stroke="${c}" stroke-dasharray="${l} ${C-l}" stroke-dashoffset="${-o}"/>`:''}).join('')}</g><text x="50" y="49" text-anchor="middle" font-size="19" font-weight="800" fill="var(--tx)">${f1(ge)}</text><text x="50" y="62" text-anchor="middle" font-size="8" fill="var(--mut)">média</text></svg>`;
+ return `<div class="chips">${[[0,'Ano'],...R(4).map(p=>[p,p+'º bim'])].map(([p,l])=>`<button class="chip${dp===p?' on':''}" onclick="dp=${p};render()">${l}</button>`).join('')}</div>
+<div class="card hero">${donut}<div class="lg">${seg.map(([n,c,l])=>`<div><i style="background:${c}"></i>${l} <b>${n}</b></div>`).join('')}</div></div>
+<div class="card"><h3>Ranking</h3>${ord.map(([s,v])=>`<div class="row${s.id===cur.id?' on':''}" onclick="ds='${s.id}';render()"><span>${esc(s.n)}</span><div class="bar"><i style="width:${(v||0)*10}%;background:${s.c}"></i><u style="left:${S.avg*10}%"></u></div><b>${f1(v)}</b></div>`).join('')}</div>
+<div class="card"><h3>Mapa de notas</h3><div style="overflow-x:auto"><table class="hm"><tr><th></th>${R(4).map(p=>`<th>${p}º</th>`).join('')}<th>Ano</th></tr>${BS().map(s=>`<tr><th>${esc(s.n)}</th>${[...R(4).map(p=>pA(s,p)),yA(s)].map(v=>`<td class="${hc(v)}">${n1(v)}</td>`).join('')}</tr>`).join('')}</table></div></div>
+<div class="card"><div class="head"><h3><span class="dot" style="background:${cur.c}"></span>${esc(cur.n)}</h3><span class="pill ${st[0]}">${st[1]}</span></div><small>${ic('user',14)} ${esc(cur.pr||'Professor não informado')}</small>${chart(cur)}${tr(cur)}${nec(cur)}${ty.length?`<p class="ty">${ty.map(x=>`${x[0]}: <b>${f1(x[1])}</b>`).join(' &nbsp; ')}</p>`:''}</div>`}
+function formativa(){return [2026,2027,2028].map(y=>{const F=(S.Y[y]||{}).fm||{};return `<div class="card"><h3>Formativa ${y} <small>· ${y-2025}º ano</small></h3>${R(4).map(p=>`<div class="ir" style="padding-left:0;background:none">${cb(`f.${y}.${p}`,cc(F[p]),n1(F[p]),`ask({t:'f',y:${y},p:${p}})`,1)}<span>${p}º bimestre</span></div>`).join('')}</div>`}).join('')}
+const cb=(key,cls,txt,ask,sm)=>`<div class="cir${sm?' sm':''} ${cls}${pq===key?' pe-on':''}" onclick="event.stopPropagation();pq=pq==='${key}'?null:'${key}';render()">${txt}<button class="pen" aria-label="Editar" onclick="event.stopPropagation();pq=null;${ask}">${ic('edit',sm?16:20)}</button></div>`;
+const X=s=>((s.g[bim]||{}).x||[]).map((z,i)=>{const e=(z.t||'e')==='e',a=`'${s.id}',${bim},${i}`,k=`${s.id}.${bim}.${i}`;return `<div class="ir">${cb('x.'+k,z.v==null?'n':e?'':cc(z.v),z.v==null?'–':(e?'+':'')+f1(z.v),`ask({t:'x',id:'${s.id}',p:${bim},i:${i}})`,1)}<span class="tg" onclick="xe=xe==='${k}'?null:'${k}';render()">${esc(z.n)||'Nova nota'}<br><small class="sm2">${e?'ponto extra':'normal'}</small></span></div>${xe===k?`<div class="ir xr"><div class="xl"><input class="nm" placeholder="Nome" maxlength="30" value="${esc(z.n)}" onchange="setX(${a},'n',this.value)"><button class="x" aria-label="Apagar" onclick="setX(${a},'d')">×</button></div><div class="xl"><button class="chip${e?'':' on'}" onclick="setX(${a},'t','n')">Normal</button><button class="chip${e?' on':''}" onclick="setX(${a},'t','e')">Ponto extra</button></div></div>`:''}`}).join('')+`<div class="ir" style="justify-content:center"><button class="chip" onclick="addX('${s.id}',${bim})">+ Outra nota</button></div>`;
+const mt=()=>{const s=S.subs.find(x=>x.id===mq.id)||{},o=(s.g||{})[mq.p]||{},n=esc(s.n||''),N={a:'prova parcial',b:'prova bimestral'},zx=esc(((o.x||[])[mq.i]||{}).n||'')||'outra nota';
+ return mq.t==='m'?[`Deseja alterar manualmente a média de ${n}?`,`Média de ${n}`]:mq.t==='g'?[`Deseja alterar a nota da ${N[mq.k]} de ${n}?`,`${N[mq.k][0].toUpperCase()+N[mq.k].slice(1)} de ${n}`]:mq.t==='x'?[`Deseja alterar a nota de ${zx} de ${n}?`,`${zx} de ${n}`]:mq.t==='r'?[`Deseja alterar a nota de recuperação de ${n}?`,`Recuperação de ${n}`]:[`Deseja alterar a nota da formativa do ${mq.p}º bimestre de ${mq.y}?`,`Formativa do ${mq.p}º bimestre de ${mq.y}`]};
+const cv=()=>{const s=S.subs.find(x=>x.id===mq.id)||{},o=(s.g||{})[mq.p]||{};return mq.t==='m'?o.m:mq.t==='g'?o[mq.k]:mq.t==='x'?((o.x||[])[mq.i]||{}).v:mq.t==='r'?s.r:((S.Y[mq.y]||{}).fm||{})[mq.p]};
+const modal=()=>{const[q,sh]=mt(),v=cv(),s=S.subs.find(x=>x.id===mq.id)||{},man=mq.t==='m'&&((s.g||{})[mq.p]||{}).m!=null;return `<div class="ov" onclick="mq=null;render()"><div class="mdl" onclick="event.stopPropagation()">${mq.step===1?`<h3>${q}</h3><div class="f"><button class="btn" onclick="mq.step=2;render()">Confirmar</button><button class="chip" onclick="mq=null;render()">Cancelar</button></div>`:`<h3>${sh}</h3><label><small>${mq.t==='m'?'Média':'Nota'}</small><input id="mv" type="number" inputmode="decimal" min="0" max="10" step="0.1" value="${v==null||v===false?'':v}"></label><div class="f"><button class="btn" onclick="setV()">Salvar</button>${man?'<button class="chip" onclick="clrM()">Voltar ao automático</button>':''}<button class="chip" onclick="mq=null;render()">Cancelar</button></div>`}</div></div>`};
+function ask(o){mq={...o,step:(o.t==='f'?S.cfg.cf:S.cfg.cn)?1:2};render()}
+function setV(){let v=num(V('#mv'));if(isNaN(v)){$('#mv').focus();return}v=Math.min(10,Math.max(0,v));const s=S.subs.find(x=>x.id===mq.id),z=v===0;
+ if(mq.t==='f'){const Y=S.Y[mq.y]=S.Y[mq.y]||newY();if(z)delete Y.fm[mq.p];else Y.fm[mq.p]=v}
+ else if(mq.t==='r'){if(z)delete s.r;else s.r=v}
+ else{const o=s.g[mq.p]=s.g[mq.p]||{};if(mq.t==='m')o.m=z?false:v;else if(mq.t==='g'){if(z)delete o[mq.k];else o[mq.k]=v}else o.x[mq.i].v=z?null:v}
+ mq=null;save();render()}
+function clrM(){const s=S.subs.find(x=>x.id===mq.id);delete(s.g[mq.p]||{}).m;mq=null;save();render()}
+const hmodal=()=>`<div class="ov" onclick="hq=null;render()"><div class="mdl" onclick="event.stopPropagation()">${hq.step===1?`<h3>Deseja adicionar uma disciplina?</h3><div class="f"><button class="btn" onclick="hq.step=2;render()">Confirmar</button><button class="chip" onclick="hq=null;render()">Cancelar</button></div>`:hq.step===2?`<h3>Nova disciplina</h3><label><small>Disciplina</small><input id="hn" maxlength="40" value="${esc(hq.n||'')}"></label><label><small>Professor(a)</small><input id="hp" maxlength="40" value="${esc(hq.pr||'')}"></label><div class="f"><button class="btn" onclick="hNext()">Confirmar</button><button class="chip" onclick="hq=null;render()">Cancelar</button></div>`:`<h3>Adicionar ${esc(hq.n)} ao boletim?</h3><div class="f"><button class="btn" onclick="hAdd(1)">Sim</button><button class="chip" onclick="hAdd(0)">Não</button></div>`}</div></div>`;
+function hNext(){const n=V('#hn').trim();if(!n){$('#hn').focus();return}hq.n=n;hq.pr=V('#hp').trim();hq.step=3;render()}
+function hAdd(b){const s={id:uid(),n:hq.n,pr:hq.pr,c:COL[S.subs.length%COL.length],g:{},at:{}};if(!b)s.nb=1;S.subs.push(s);if(hq.d!==null){const L=S.sched[hq.d]=S.sched[hq.d]||[];while(L.length<9)L.push(null);L[hq.t]=s.id}hq=null;save();render()}
+function boletim(){
+ if(!BS().length)return YR()+'<div class="card empty">Cadastre uma matéria primeiro no <b>Painel</b>.</div>';
+ const B=[...R(4).map(p=>[p,p+'º BIM']),[5,'RECUPERAÇÃO'],[6,'FINAL']];
+ let h=YR()+`<div class="bt">${B.map(([p,l])=>`<button class="${bim===p?'on':''}" onclick="bim=${p};ex=null;render()">${l}</button>`).join('')}</div>`;
+ return h+BS().map(s=>{
+  if(bim===6){const[c,l]=fin(s),a=yA(s);return `<div class="sr"><div class="hd"><div class="cir ${cc(a)}">${f1(a)}</div><div><b>${esc(s.n)}</b><br><small>Média final</small></div><span class="pill ${c}">${l}</span></div></div>`}
+  if(bim===5)return `<div class="sr"><div class="ir">${cb('r.'+s.id,cc(s.r),n1(s.r),`ask({t:'r',id:'${s.id}'})`,1)}<span>${esc(s.n)}</span></div></div>`;
+  const a=pA(s,bim),o=ex===s.id,man=(s.g[bim]||{}).m!=null;
+  return `<div class="sr"><div class="hd" onclick="ex=${o?'null':`'${s.id}'`};render()">${cb('m.'+s.id,cc(a)+(man?' mn':''),f1(a),`ask({t:'m',id:'${s.id}',p:${bim}})`)}<div><b>${esc(s.n)}</b><br><small>${man?'Média manual':'Média Aritmética'}</small></div><span>${ic(o?'cu':'cd',18)}</span></div>${o?KS.slice(0,2).map(([k,l])=>{const v=gx(s,bim,k);return `<div class="ir">${cb(`g.${s.id}.${bim}.${k}`,cc(v),n1(v),`ask({t:'g',id:'${s.id}',p:${bim},k:'${k}'})`,1)}<span>${l}<br><small class="sm2">normal</small></span></div>`}).join('')+`<div class="ir">${cb(`f.${S.yr}.${bim}`,cc(S.fm[bim]),n1(S.fm[bim]),`ask({t:'f',y:${S.yr},p:${bim}})`,1)}<span>Formativa<br><small class="sm2">normal</small></span></div>`+X(s):''}</div>`}).join('')}
+
+function horario(){if(!S.subs.length)return '<div class="card empty">Cadastre suas matérias no <b>Painel</b> primeiro.</div>';
+ const hj=(new Date().getDay()+6)%7,d=hdi===null?(hj<5?hj:0):hdi,L=S.sched[d]||[];
+ return `<div class="chips">${DAYS.slice(0,5).map((n,i)=>`<button class="chip${i===d?' on':''}" onclick="hdi=${i};render()">${n.slice(0,3)}${i===hj?' •':''}</button>`).join('')}</div><div class="card"><h3>${DAYS[d]}</h3>${R(9).map(t=>`<label class="tp"><span>${t}º tempo</span><select onchange="setT(${d},${t-1},this.value)"><option value="">— sem aula —</option>${S.subs.map(s=>`<option value="${s.id}"${L[t-1]===s.id?' selected':''}>${esc(s.n)}</option>`).join('')}<option value="__n">Outro</option></select></label>`).join('')}</div>`}
+const KC={Prova:'#e11d48',Trabalho:'#7c3aed',Tarefa:'#2563eb',Atividade:'#0891b2',Evento:'#f59e0b',Feriado:'#f59e0b'},KIC={Prova:'doc',Trabalho:'folder',Tarefa:'task',Atividade:'edit',Evento:'star',Feriado:'star'},PLU={Prova:'Provas',Trabalho:'Trabalhos',Tarefa:'Tarefas',Atividade:'Atividades',Evento:'Eventos'};
+const addD=(d,n)=>{const o=new Date(d+'T00:00');o.setDate(o.getDate()+n);return `${o.getFullYear()}-${p2(o.getMonth()+1)}-${p2(o.getDate())}`};
+const inY=d=>d.startsWith(String(S.yr));
+const AD=()=>{const T=td();return ad&&inY(ad)?ad:inY(T)?T:S.yr+'-02-01'};
+const tkc=(i,T)=>{const c=KC[i.k]||'#2563eb',s=S.subs.find(x=>x.id===i.sid),ck=i.ck||[],dn=ck.filter(z=>z.x).length,op=ax===i.id,n=dd(i.d,T);
+ return `<div class="tk${i.x?' dn3':''}" style="--c:${c}"><button class="ck" aria-label="Concluir" onclick="tg('${i.id}')">${i.x?ic('check',16):''}</button><div class="tb"><div onclick="ax=${op?'null':`'${i.id}'`};render()"><div class="tt">${esc(i.t)}</div><div class="tm"><span class="kp">${ic(KIC[i.k]||'task',13)} ${i.k}</span>${s?`<span class="sb2"><i class="dot" style="background:${s.c}"></i>${esc(s.n)}</span>`:''}${ck.length?`<span class="sb2">${ic('task',13)} ${dn}/${ck.length}</span>`:''}${!i.x&&n<0?`<span class="sb2 bad">Atrasado ${-n}d</span>`:''}${i.d!==T&&n>=0?`<span class="sb2">${fd(i.d)}</span>`:''}</div></div>${op?det(i):''}</div></div>`};
+const det=i=>`<div class="dt2">${i.c?`<p class="ct">${esc(i.c)}</p>`:''}${(i.ck||[]).map((z,j)=>`<div class="cl${z.x?' d':''}"><input type="checkbox" ${z.x?'checked':''} onchange="tgCk('${i.id}',${j})"><span>${esc(z.t)}</span><button class="x" aria-label="Remover passo" onclick="delCk('${i.id}',${j})">×</button></div>`).join('')}<div class="f"><input id="cki" placeholder="Novo passo" maxlength="60"><button class="chip" onclick="addCk('${i.id}')">${ic('plus',14)} Adicionar</button></div><div class="f"><input type="date" value="${i.d}" onchange="mvI('${i.id}',this.value)"><button class="chip" onclick="mvI('${i.id}','${addD(i.d,1)}')">Adiar 1 dia</button><button class="chip fl" onclick="delI('${i.id}')">${pend===i.id?'Confirmar':'Excluir'}</button></div></div>`;
+const sheet=()=>{const d=adr.d||AD();return `<div class="ov sheet" onclick="ash=false;render()"><div class="mdl sheet" onclick="event.stopPropagation()"><h3>Novo item</h3><div class="f">${KI.map(k=>`<button class="chip kc${ak===k?' on':''}" style="--c:${KC[k]}" onclick="aks('${k}')">${ic(KIC[k],14)} ${k}</button>`).join('')}</div><div class="f"><input id="it" placeholder="Título" maxlength="60" value="${esc(adr.t||'')}"></div><div class="f"><select id="is"><option value="">Sem matéria</option>${S.subs.map(s=>`<option value="${s.id}"${adr.s===s.id?' selected':''}>${esc(s.n)}</option>`).join('')}</select><input id="idt" type="date" value="${d}"></div><textarea id="ic" rows="3" placeholder="Conteúdo">${esc(adr.c||'')}</textarea><textarea id="ics" rows="3" placeholder="Checklist (um passo por linha)">${esc(adr.k||'')}</textarea><div class="f"><select id="irp">${[['1','Não repetir'],['4','Toda semana · 4 vezes'],['8','Toda semana · 8 vezes'],['16','Toda semana · 16 vezes']].map(([v,l])=>`<option value="${v}"${adr.r===v?' selected':''}>${l}</option>`).join('')}</select></div><div class="f"><button class="btn" onclick="addI()">Salvar</button><button class="chip" onclick="ash=false;render()">Cancelar</button></div></div></div>`};
+function aks(k){ak=k;adr={t:V('#it'),c:V('#ic'),s:V('#is'),d:V('#idt'),k:V('#ics'),r:V('#irp')};render()}
+function addI(){const t=V('#it').trim();if(!t){$('#it').focus();return}const d=V('#idt')||AD(),n=+V('#irp')||1,ck=V('#ics').split('\n').map(x=>x.trim()).filter(Boolean).map(x=>({t:x.slice(0,60),x:false}));
+ for(let r=0;r<n;r++){const dt=addD(d,7*r);if(inY(dt))S.items.push({id:uid(),t,k:ak,sid:V('#is'),d:dt,c:V('#ic').trim().slice(0,500),x:false,ck:ck.map(z=>({...z}))})}
+ ash=false;adr={};if(inY(d))ad=d;save();render()}
+function addCk(id){const v=V('#cki').trim();if(!v)return;const i=S.items.find(z=>z.id===id);(i.ck=i.ck||[]).push({t:v.slice(0,60),x:false});save();render()}
+function tgCk(id,j){const i=S.items.find(z=>z.id===id);i.ck[j].x=!i.ck[j].x;save();render()}
+function delCk(id,j){S.items.find(z=>z.id===id).ck.splice(j,1);save();render()}
+function mvI(id,d){if(!d||!inY(d))return;S.items.find(z=>z.id===id).d=d;ad=d;save();render()}
+function delI(id){if(pend!==id){pend=id;render();return}S.items=S.items.filter(z=>z.id!==id);pend=null;ax=null;save();render()}
+function agw(n){const d=addD(AD(),7*n);if(inY(d)){ad=d;render()}}
+function agm(n){const[y,m]=AD().split('-').map(Number),o=new Date(y,m-1+n,1),d=`${o.getFullYear()}-${p2(o.getMonth()+1)}-01`;if(inY(d)){ad=d;render()}}
+function agenda(){const T=td(),D=AD(),all=S.items.concat(hol()),pd=pdg(),[yy,mm]=D.split('-').map(Number),flt=i=>agf==='all'||i.k===agf,
+ ti=S.items.filter(i=>i.d===T&&i.k!=='Feriado'),dn=ti.filter(i=>i.x).length,q=ti.length?dn/ti.length*100:null,atr=pd.filter(i=>dd(i.d,T)<0).length,sem=pd.filter(i=>dd(i.d,T)>=0&&dd(i.d,T)<=7).length,np=pd.filter(i=>i.k==='Prova'&&dd(i.d,T)>=0).sort((a,b)=>a.d.localeCompare(b.d))[0];
+ let h=`<div class="card hero tkh">${ring(q,0,88)}<div><small>Hoje</small><b class="big2">${ti.length?dn+' de '+ti.length:'Sem itens'}</b><div class="tm" style="margin-top:8px"><span class="sb2${atr?' bad':''}">${atr} atrasada${atr!==1?'s':''}</span><span class="sb2">${sem} esta semana</span></div></div></div>`;
+ if(np){const n=dd(np.d,T);h+=`<div class="card tkn" style="--c:${KC.Prova}"><small>Próxima prova</small><b>${esc(np.t)}</b><small>${fd(np.d)} · ${n?'em '+n+' dia'+(n>1?'s':''):'hoje'}</small></div>`}
+ h+=`<div class="sgm"><button class="${av==='sem'?'on':''}" onclick="av='sem';render()">Semana</button><button class="${av==='mes'?'on':''}" onclick="av='mes';render()">Mês</button></div>`;
+ const dots=ds=>all.filter(z=>z.d===ds).slice(0,3).map(z=>`<i style="background:${ds===D&&av==='sem'?'#fff':KC[z.k]||'#2563eb'}"></i>`).join('');
+ if(av==='sem'){const st=addD(D,-new Date(D+'T00:00').getDay());
+  h+=`<div class="head" style="margin:10px 2px 4px"><button class="x" aria-label="Semana anterior" onclick="agw(-1)">${ic('cl',20)}</button><b>${MN[mm-1]} ${yy}</b><span><button class="chip" onclick="ad=null;render()">Hoje</button><button class="x" aria-label="Próxima semana" onclick="agw(1)">${ic('cr',20)}</button></span></div><div class="wk">${[0,1,2,3,4,5,6].map(i=>{const ds=addD(st,i);return `<button class="wd${ds===D?' on':''}${ds===T?' hj':''}${inY(ds)?'':' out'}" onclick="ad='${ds}';render()"><small>${'DSTQQSS'[i]}</small><b>${+ds.slice(8)}</b><span class="dts">${dots(ds)}</span></button>`}).join('')}</div>`}
+ else{const f=new Date(yy,mm-1,1).getDay(),nd=new Date(yy,mm,0).getDate();let g=['D','S','T','Q','Q','S','S'].map(x=>`<small>${x}</small>`).join('')+'<i></i>'.repeat(f);
+  for(let d=1;d<=nd;d++){const ds=`${yy}-${p2(mm)}-${p2(d)}`,L=all.filter(i=>i.d===ds);g+=`<button class="day${ds===T?' hj':''}${ds===D?' on':''}" onclick="ad='${ds}';render()">${d}${L.length?`<em class="${L.some(i=>!i.x&&i.k!=='Feriado'&&ds<T)?'bad':L.every(i=>i.k==='Feriado')?'hl':''}"></em>`:''}</button>`}
+  h+=`<div class="card mo2"><div class="head"><button class="x" aria-label="Mês anterior" onclick="agm(-1)">${ic('cl',20)}</button><b>${MN[mm-1]} ${yy}</b><button class="x" aria-label="Próximo mês" onclick="agm(1)">${ic('cr',20)}</button></div><div class="cal">${g}</div></div>`}
+ h+=`<div class="chips" style="margin-top:12px"><button class="chip${agf==='all'?' on':''}" onclick="agf='all';render()">Todos</button>${Object.keys(PLU).map(k=>`<button class="chip kc${agf===k?' on':''}" style="--c:${KC[k]}" onclick="agf='${k}';render()">${PLU[k]}</button>`).join('')}</div>`;
+ const hd=all.filter(i=>i.d===D&&i.k==='Feriado'),di2=S.items.filter(i=>i.d===D&&i.k!=='Feriado'&&flt(i)).sort((a,b)=>(!!a.x-!!b.x)),ov=D===T?pd.filter(i=>dd(i.d,T)<0&&flt(i)).sort((a,b)=>a.d.localeCompare(b.d)):[],up=pd.filter(i=>i.d>D&&flt(i)).sort((a,b)=>a.d.localeCompare(b.d)).slice(0,5);
+ h+=hd.map(i=>`<div class="tk" style="--c:${KC.Feriado}"><span class="cir sm" style="background:${KC.Feriado}">${ic('star',16)}</span><div class="tb"><div class="tt">${esc(i.t)}</div><div class="tm"><span class="kp">Feriado</span>${i.auto?'':`<button class="x" onclick="S.items=S.items.filter(z=>z.id!=='${i.id}');save();render()">×</button>`}</div></div></div>`).join('');
+ if(ov.length)h+=`<div class="sec bad">Atrasadas</div>`+ov.map(i=>tkc(i,T)).join('');
+ h+=`<div class="sec">${D===T?'Hoje':fl(D)}</div>`+(di2.length?di2.map(i=>tkc(i,T)).join(''):`<div class="card empty">Nada para este dia.<div class="f" style="justify-content:center"><button class="btn" onclick="ash=true;adr={};render()">Adicionar</button></div></div>`);
+ if(up.length)h+=`<div class="sec">Próximos</div>`+up.map(i=>tkc(i,T)).join('');
+ return h+`<div style="height:84px"></div>`+(ash?'':`<button class="fab" aria-label="Adicionar" onclick="ash=true;adr={};render()">${ic('plus',26)}</button>`)}
+function perfil(){const F=[['nome','Nome'],['escola','Escola'],['serie','Série / turma'],['mat','Matrícula'],['ano','Ano letivo']];
+ return `<div class="card"><h3>Conta</h3><small>${esc(ses)} · ${SY()}</small><div class="f"><button class="btn" onclick="logout()">Sair</button></div></div><div class="card"><h3>Dados pessoais</h3>${F.map(([k,l])=>`<label><small>${l}</small><input value="${esc(S.me[k]||'')}" oninput="S.me['${k}']=this.value;save();gr()"></label>`).join('')}</div>
+<div class="card"><h3>Backup</h3><div class="f"><button class="btn" onclick="expo()">Exportar</button><label class="btn" style="flex:1 1 100px;text-align:center;margin:0">Restaurar<input type="file" accept=".json,application/json" hidden onchange="impo(this)"></label></div>${bk?`<div class="al ok">${bk}</div>`:''}</div>`}
+const cf=(k,v)=>{v=num(v);if(!isNaN(v)&&v>=0){S[k]=v;save();render()}};
+const mv=d=>{cm[1]+=d;if(cm[1]<0){cm[1]=11;cm[0]--}if(cm[1]>11){cm[1]=0;cm[0]++}render()};
+function addSub(){const n=V('#mn').trim();if(!n)return;hq={d:null,t:null,step:3,n,pr:V('#mp').trim()};render()}
+function delSub(id){if(pend!==id){pend=id;render();return}S.subs=S.subs.filter(s=>s.id!==id);Object.values(S.sched).forEach(L=>L.forEach((x,i)=>{if(x===id)L[i]=null}));pend=null;save();render()}
+function addX(id,p){const s=S.subs.find(x=>x.id===id),o=s.g[p]=s.g[p]||{};(o.x=o.x||[]).push({n:'',v:null,t:'n'});xe=id+'.'+p+'.'+(o.x.length-1);save();render()}
+function setX(id,p,i,f,v){const x=S.subs.find(a=>a.id===id).g[p].x;if(f==='d'){x.splice(i,1);xe=null}else if(f==='n')x[i].n=v.slice(0,30);else if(f==='t')x[i].t=v;else{v=num(v);x[i].v=isNaN(v)?null:Math.min(10,Math.max(0,v))}save();render()}
+function setN(id,p,k,v){const s=S.subs.find(x=>x.id===id);v=num(v);const o=p?(s.g[p]=s.g[p]||{}):s;if(isNaN(v))delete o[k];else o[k]=Math.min(10,Math.max(0,v));save();render()}
+function setT(d,t,v){if(v==='__n'){hq={d,t,step:1};render();return}const L=S.sched[d]=S.sched[d]||[];while(L.length<9)L.push(null);L[t]=v||null;save();render()}
+function tg(id){const i=S.items.find(z=>z.id===id);i.x=!i.x;save();render()}
+const go=t=>{dwo=false;$('#menu').hidden=true;if(t==='agenda'||t==='materias'){ao=null;sd=null;af=false;fmo=null;fdy=null;ad=null;ash=false;ax=null}hq=null;sq=null;mq=null;pq=null;xe=null;tab=t;pend=null;bk='';imsg='';ip=null;render();scrollTo(0,0)};
+const Yc=()=>S.Y[S.yr];
+function newY(){return{subs:[],sched:{},items:[],fm:{},att:{}}}
+function bind(){['subs','sched','items','fm','att'].forEach(k=>Object.defineProperty(S,k,{get:()=>Yc()[k],set:v=>{Yc()[k]=v},enumerable:false,configurable:true}))}
+function setYr(y){yo=false;S.yr=y;S.Y[y]=S.Y[y]||newY();sel=null;ex=null;sd=null;save();render()}
+function copyPrev(){S.subs=S.Y[S.yr-1].subs.map(s=>({id:uid(),n:s.n,pr:s.pr,c:s.c,g:{},at:{},nb:s.nb}));save();render()}
+function expo(){const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([JSON.stringify(S)],{type:'application/json'}));a.download='stzblue-backup-'+td()+'.json';a.click();bk='Backup baixado.';render()}
+function impo(i){const f=i.files[0];if(!f)return;f.text().then(t=>{try{const d=JSON.parse(t);if(!d||!(d.Y||d.subs))throw 0;d.fz=1;localStorage.setItem(K,JSON.stringify(d));load();save();bk='Backup restaurado.'}catch(e){bk='Arquivo inválido.'}render()})}
+const mg=s=>{const t=tot(s);if(!S.fq||t.P+t.F===0)return'';const x=Math.floor(t.P*100/S.fq-t.P-t.F);return x<0?ic('warn',14)+' Já abaixo da frequência mínima':'Pode faltar mais '+x+' aula'+(x===1?'':'s')};
+const YR=()=>`<div style="margin:8px 0"><button class="chip on" onclick="yo=!yo;render()">Ano letivo: ${S.yr} · ${S.yr-2025}º ano ${ic(yo?'cu':'cd',14)}</button>${yo?`<div class="yl">${[2026,2027,2028].map((y,i)=>`<button class="chip${y===S.yr?' on':''}" onclick="setYr(${y})">${y} · ${i+1}º ano</button>`).join('')}</div>`:''}</div>`;
+const fin=s=>{const a=yA(s),k=R(4).filter(p=>pA(s,p)!==null).length;if(a===null)return['mut','Sem notas'];if(k<4&&s.r==null)return['mut','Em andamento'];return a>=S.avg?['ok','Aprovado']:s.r==null?['warn','Recuperação']:['bad','Reprovado']};
+const chart=s=>{const v=R(4).map(p=>pA(s,p)),X=p=>30+(p-1)*80,Yy=a=>80-a*7,pt=v.map((a,i)=>a===null?null:[X(i+1),Yy(a),a]).filter(Boolean);
+ return `<svg viewBox="0 0 300 100" style="width:100%;margin-top:8px"><line x1="20" x2="290" y1="${Yy(S.avg)}" y2="${Yy(S.avg)}" stroke="var(--mut)" stroke-dasharray="4 4" opacity=".6"/>${pt.length>1?`<polyline fill="none" stroke="${s.c}" stroke-width="3" points="${pt.map(p=>p[0]+','+p[1]).join(' ')}"/>`:''}${pt.map(p=>`<circle cx="${p[0]}" cy="${p[1]}" r="5" fill="${s.c}"/><text x="${p[0]}" y="${p[1]-9}" text-anchor="middle" font-size="12" font-weight="700" fill="var(--tx)">${f1(p[2])}</text>`).join('')}${R(4).map(p=>`<text x="${X(p)}" y="96" text-anchor="middle" font-size="11" fill="var(--mut)">${p}º bim</text>`).join('')}</svg>`};
+function nec(s){const L=[];
+ for(let p=1;p<=4;p++){const o=s.g[p]||{};if(o.m==null&&o.b==null&&(o.a!=null||S.fm[p]!=null)){const q=xs(o),kn=[o.a,S.fm[p],...q.n].filter(x=>x!=null),e=q.e,b=(S.avg-e)*(kn.length+1)-kn.reduce((x,y)=>x+y,0);L.push(p+'º bim: '+(b<=0?'a média já está garantida sem a bimestral':b>10?'não dá para alcançar a média só com a bimestral':'precisa de '+f1(b)+' na bimestral'));break}}
+ const a=R(4).map(p=>pA(s,p)).filter(x=>x!==null);
+ if(a.length&&a.length<4){const n=(S.avg*4-a.reduce((x,y)=>x+y,0))/(4-a.length);L.push('Média anual: '+(n<=0?'já garantida':n>10?'difícil de alcançar':'precisa de '+f1(n)+' nos bimestres restantes'))}
+ return L.length?`<p class="ty">${L.map(esc).join('<br>')}</p>`:''}
+const IC={bell:'<path d="M6 9a6 6 0 0 1 12 0c0 5 2 6 2 6H4s2-1 2-6z"/><path d="M10 19a2 2 0 0 0 4 0"/>',book:'<path d="M5 4h13a1 1 0 0 1 1 1v14H6a1 1 0 0 1-1-1z"/><path d="M5 18a2 2 0 0 1 2-2h12"/>',cal:'<path d="M4 6h16v14H4z"/><path d="M4 10h16M8 3v4M16 3v4"/>',user:'<circle cx="12" cy="8" r="4"/><path d="M5 20a7 7 0 0 1 14 0"/>',cloud:'<path d="M7 18a4 4 0 0 1-.5-7.97A5.5 5.5 0 0 1 17 8.5 4.5 4.5 0 0 1 17.5 18z"/>',warn:'<path d="M12 4l9 16H3z"/><path d="M12 10v4M12 17v.5"/>',down:'<path d="M12 4v11M7 11l5 5 5-5M5 20h14"/>',edit:'<path d="M4 20l1-4L16 5a2 2 0 0 1 3 3L8 19z"/><path d="M14 7l3 3"/>',cd:'<path d="M6 9l6 6 6-6"/>',doc:'<path d="M7 3h8l4 4v14H7z"/><path d="M14 3v5h5M10 13h6M10 17h4"/>',folder:'<path d="M3 7h6l2 2h10v10H3z"/>',task:'<rect x="4" y="4" width="16" height="16" rx="3"/><path d="M8 12l3 3 5-6"/>',star:'<path d="M12 4l2.5 5 5.5.8-4 3.9.9 5.5L12 16.8 7.1 19.2 8 13.7 4 9.8l5.5-.8z"/>',plus:'<path d="M12 5v14M5 12h14"/>',check:'<path d="M5 12l5 5 9-10"/>',cfg:'<path d="M4 7h10M18 7h2M4 17h2M10 17h10"/><circle cx="16" cy="7" r="2"/><circle cx="8" cy="17" r="2"/>',menu:'<path d="M4 7h16M4 12h16M4 17h16"/>',home:'<path d="M4 11l8-7 8 7v9H4z"/><path d="M10 20v-6h4v6"/>',chart:'<path d="M5 20V10M12 20V4M19 20v-7"/>',clock:'<circle cx="12" cy="12" r="8.5"/><path d="M12 7v5l3 2"/>',calc:'<path d="M4 6h16v14H4z"/><path d="M4 10h16M8 3v4M16 3v4M9 15l2 2 4-4"/>',cam:'<path d="M4 8h3l2-3h6l2 3h3v11H4z"/><circle cx="12" cy="13" r="3.5"/>',out:'<path d="M9 4H5v16h4M16 8l4 4-4 4M20 12H9"/>',au:'<path d="M12 19V5M6 11l6-6 6 6"/>',ad:'<path d="M12 5v14M6 13l6 6 6-6"/>',cu:'<path d="M6 15l6-6 6 6"/>',cl:'<path d="M15 6l-6 6 6 6"/>',cr:'<path d="M9 6l6 6-6 6"/>',dots:'<circle cx="12" cy="5" r="1.5" fill="currentColor"/><circle cx="12" cy="12" r="1.5" fill="currentColor"/><circle cx="12" cy="19" r="1.5" fill="currentColor"/>'};
+const ic=(n,z=18)=>`<svg class="ic" width="${z}" height="${z}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">${IC[n]}</svg>`;
+const BS=()=>S.subs.filter(s=>!s.nb);
+const WD=['Domingo','Segunda','Terça','Quarta','Quinta','Sexta','Sábado'];
+const fl=d=>{const o=new Date(d+'T00:00');return `${WD[o.getDay()]}, ${o.getDate()} de ${MN[o.getMonth()].toLowerCase()}`};
+const di=d=>(new Date(d+'T00:00').getDay()+6)%7;
+const cls=d=>{const i=di(d);return i>4?[]:(S.sched[i]||[]).map((id,t)=>id?t:-1).filter(t=>t>=0)};
+function applyTheme(){const t=(S&&S.cfg&&S.cfg.tema)||'auto',e=document.documentElement;if(!e||!e.setAttribute)return;if(t==='auto')e.removeAttribute('data-theme');else e.setAttribute('data-theme',t==='escuro'?'dark':'light')}
+const sw=k=>`<button class="sw${S.cfg[k]?' on':''}" role="switch" aria-checked="${!!S.cfg[k]}" onclick="tgc('${k}')"><i></i></button>`;
+function tgc(k){S.cfg[k]=S.cfg[k]?0:1;save();render()}
+function cfn(k,v){v=num(v);if(isNaN(v)||v<0)return;S.cfg[k]=v;save();render()}
+function setTema(t){S.cfg.tema=t;save();render()}
+function togB(id){const s=S.subs.find(x=>x.id===id);if(s.nb)delete s.nb;else s.nb=1;save();render()}
+function config(){const C=S.cfg,row=(l,k)=>`<div class="li"><span>${l}</span>${sw(k)}</div>`,ni=(l,k,mn,mx,st)=>`<label><small>${l}</small><input type="number" min="${mn}" max="${mx}" step="${st}" value="${C[k]}" onchange="cfn('${k}',this.value)"></label>`;
+ return `<div class="card"><h3>Confirmações</h3>${row('Confirmar antes de alterar nota','cn')}${row('Confirmar antes de alterar nota da formativa','cf')}</div>
+<div class="card"><h3>Tema</h3><div class="f">${[['auto','Automático'],['claro','Claro'],['escuro','Escuro']].map(([v,l])=>`<button class="chip${C.tema===v?' on':''}" onclick="setTema('${v}')">${l}</button>`).join('')}</div></div>
+<div class="card"><h3>Regras da escola</h3><label><small>Média mínima</small><input type="number" step="0.5" min="0" max="10" value="${S.avg}" onchange="cf('avg',this.value)"></label><label><small>Frequência mínima (%)</small><input type="number" min="0" max="100" value="${S.fq}" onchange="cf('fq',this.value)"></label></div>
+<div class="card"><h3>Alertas</h3>${row('Alertas de média','am')}${row('Alertas de frequência','af')}${row('Alertas de prazos','ap')}${ni('Média no limite: até quantos pontos acima do mínimo','mg',0,5,.5)}${ni('Avisar prazos com antecedência de (dias)','dias',0,14,1)}${ni('Avisar a partir de quantas pendências','pend',1,50,1)}</div>`}
+function dr(o){dwo=o;$('#dw').className='dw'+(o?' on':'')}
+const ini=()=>{const p=(S.me.nome||'').trim().split(/\s+/).filter(Boolean);return p.length?(p[0][0]+(p.length>1?p[p.length-1][0]:'')).toUpperCase():((ses||'?')[0]).toUpperCase()};
+const drawer=()=>`<div class="dwo" onclick="dr(false)"></div><div class="dwp"><div class="dwh"><div class="brand2">STZ<span>BLUE</span></div><div class="avt" onclick="$('#ph').click()">${S.me.foto?`<img src="${S.me.foto}" alt="">`:`<span>${ini()}</span>`}<i>${ic('cam',14)}</i></div><b>${esc((S.me.nome||'').trim()||'Estudante')}</b><small>${esc(ses)}</small><small>${S.yr} · ${S.yr-2025}º ano</small><input type="file" id="ph" accept="image/*" hidden onchange="setPhoto(this)"></div><div class="dwm">${TABS.map(([id,l,i])=>`<button class="${tab===id?'on':''}" onclick="go('${id}')">${ic(i,20)}<span>${l}</span></button>`).join('')}<hr><button onclick="go('importar')">${ic('down',20)}<span>Importar notas</span></button><button onclick="go('config')">${ic('cfg',20)}<span>Configurações</span></button><button onclick="logout()">${ic('out',20)}<span>Sair</span></button></div></div>`;
+function setPhoto(i){const f=i.files[0];if(!f)return;const r=new FileReader();r.onload=()=>{const im=new Image();im.onload=()=>{const c=document.createElement('canvas'),z=160,m=Math.min(im.width,im.height);c.width=c.height=z;c.getContext('2d').drawImage(im,(im.width-m)/2,(im.height-m)/2,m,m,0,0,z,z);S.me.foto=c.toDataURL('image/jpeg',.8);save();render()};im.src=r.result};r.readAsDataURL(f)}
+function reg(d,f){(S.att=S.att||{})[d]={f};save();render()}
+function tgT(d,t){const r=(S.att||{})[d]||{f:[]};reg(d,r.f.includes(t)?r.f.filter(x=>x!==t):[...r.f,t])}
+function clrD(d){if(S.att)delete S.att[d];save();render()}
+function gr(){const h=new Date().getHours(),n=((S&&S.me&&S.me.nome)||'').trim();$('#gr').textContent=ses?'Olá, '+(n?n+', ':'')+(h>=5&&h<12?'bom dia':h>=12&&h<18?'boa tarde':'boa noite'):''}
+const fdp=d=>{const r=(S.att||{})[d];
+ if(r&&r.sat)return `<div class="dp"><div class="head"><h3>${fl(d)}</h3><span class="pill mut">Sábado letivo</span></div>${r.t?`<p class="ct">${esc(r.t)}</p>`:''}<div class="f"><button class="chip${r.a===true?' on':''}" onclick="satA('${d}',true)">Presente</button><button class="chip${r.a===false?' fl':''}" onclick="satA('${d}',false)">Falta</button><button class="chip${r.a==null?' on':''}" onclick="satA('${d}',null)">Indefinido</button><button class="chip" onclick="clrD('${d}')">Remover</button></div></div>`;
+ const ts=cls(d),L=S.sched[di(d)]||[];return `<div class="dp"><div class="head"><h3>${fl(d)}</h3>${r?`<span class="pill ${r.n?'mut':r.f.length?'bad':'ok'}">${r.n?'Sem aula':r.f.length?'Com falta':'Presente'}</span>`:''}</div><div class="f"><button class="btn" onclick="reg('${d}',[])">Presente em todas</button><button class="chip" onclick="reg('${d}',[${ts}])">Faltei o dia todo</button><button class="chip${r&&r.n?' on':''}" onclick="noc('${d}')">Não teve aula</button><button class="chip${r?'':' on'}" onclick="clrD('${d}')">Indefinido</button></div>${r&&r.n?'':ts.map(t=>{const sb=S.subs.find(x=>x.id===L[t]),ab=r&&r.f.includes(t);return `<div class="li"><span><b style="display:inline-block;width:68px">${t+1}º tempo</b><span class="dot" style="background:${sb?sb.c:'var(--mut)'}"></span>${sb?esc(sb.n):''}</span><button class="chip${r?ab?' fl':' on':''}" onclick="tgT('${d}',${t})">${ab?'Falta':'Presente'}</button></div>`}).join('')}</div>`};
+const smodal=()=>`<div class="ov" onclick="sq=null;render()"><div class="mdl" onclick="event.stopPropagation()">${sq.step===1?`<h3>Deseja adicionar frequência ao dia ${fl(sq.d).toLowerCase()}?</h3><div class="f"><button class="btn" onclick="sq.step=2;render()">Sim</button><button class="chip" onclick="sq=null;render()">Não</button></div>`:`<h3>Sábado letivo · ${fl(sq.d)}</h3><label><small>O que teve no sábado letivo</small><textarea id="st" rows="4" maxlength="400"></textarea></label><div class="f"><button class="btn" onclick="addSat()">Salvar</button><button class="chip" onclick="sq=null;render()">Cancelar</button></div>`}</div></div>`;
+function addSat(){(S.att=S.att||{})[sq.d]={sat:1,t:V('#st').trim()};fdy=sq.d;sq=null;save();render()}
+function satA(d,a){if(a===null)delete S.att[d].a;else S.att[d].a=a;save();render()}
+function noc(d){(S.att=S.att||{})[d]={n:1};save();render()}
+const mk=()=>fmo&&fmo.startsWith(S.yr)?fmo:(td().startsWith(S.yr)?td().slice(0,7):S.yr+'-03');
+const ring=(q,min,z=84)=>{const r=34,C=2*Math.PI*r,v=q===null?0:Math.min(100,q),col=q===null?'var(--mut)':q>=min?'var(--ok)':'var(--bad)';return `<svg width="${z}" height="${z}" viewBox="0 0 84 84"><circle cx="42" cy="42" r="${r}" fill="none" stroke="var(--tr)" stroke-width="9"/><circle cx="42" cy="42" r="${r}" fill="none" stroke="${col}" stroke-width="9" stroke-linecap="round" stroke-dasharray="${C*v/100} ${C}" transform="rotate(-90 42 42)"/><text x="42" y="47" text-anchor="middle" font-size="16" font-weight="800" fill="var(--tx)">${q===null?'–':Math.round(q)+'%'}</text></svg>`};
+const cad=()=>`<div class="card"><h3>Matérias</h3><div class="f"><input id="mn" placeholder="Matéria" maxlength="40"><input id="mp" placeholder="Professor(a)" maxlength="40"><button class="btn" onclick="addSub()">Adicionar</button></div>${!S.subs.length&&S.Y[S.yr-1]&&S.Y[S.yr-1].subs.length?'<div class="f"><button class="chip" onclick="copyPrev()">Copiar matérias do ano anterior</button></div>':''}${S.subs.map(s=>`<div class="li"><span><span class="dot" style="background:${s.c}"></span>${esc(s.n)} <small>${esc(s.pr||'')}</small></span><span><button class="chip" onclick="togB('${s.id}')">${s.nb?'Só horário':'Boletim'}</button><button class="x" onclick="delSub('${s.id}')">${pend===s.id?'Apagar?':'×'}</button></span></div>`).join('')}</div>`;
+const hc=v=>v==null?'':v>=S.avg?'ok2':v>=S.avg-1?'wr2':'bd2';
+const HOL={};
+const isH=d=>hol().some(x=>x.d===d);
+function hol(){const y=S.yr;if(HOL[y])return HOL[y];let c=null;try{c=JSON.parse(localStorage.getItem('stzblue.hol.'+y))}catch(e){}
+ if(c){HOL[y]=c;return c}
+ HOL[y]=[];fetch('https://brasilapi.com.br/api/feriados/v1/'+y).then(r=>r.json()).then(j=>{HOL[y]=j.map(x=>({id:'h'+x.date,t:x.name,k:'Feriado',d:x.date,auto:1,c:'Feriado nacional'}));try{localStorage.setItem('stzblue.hol.'+y,JSON.stringify(HOL[y]))}catch(e){}if(tab==='agenda'||tab==='materias')render()}).catch(()=>{delete HOL[y]});return HOL[y]}
+const norm=t=>String(t).normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().trim();
+function parseImp(t){const rows=[],fm={},err=[];let bm=0;
+ t.split('\n').forEach(l=>{l=l.trim();if(!l)return;
+  let m=l.match(/^(?:bim(?:estre)?\s*(\d)|(\d)\s*[ºo°]?\s*bim(?:estre)?)\s*:?$/i);
+  if(m){bm=+(m[1]||m[2]);if(bm<1||bm>4)bm=0;return}
+  m=l.match(/^formativa\s*:?\s*([\d.,]+)$/i);
+  if(m){const v=num(m[1]);if(!bm||isNaN(v))err.push('Formativa ignorada: '+l);else fm[bm]=Math.min(10,v);return}
+  const pr=l.split('|').map(x=>x.trim());if(pr.length<2||!bm||!pr[0]){err.push('Linha ignorada: '+l);return}
+  const r={bm,n:pr[0].slice(0,60),a:null,p2:null,x:[]};
+  pr.slice(1).forEach(f=>{const i=f.indexOf(':'),k=f.slice(0,i).trim(),v=num(f.slice(i+1)),kl=norm(k);
+   if(i<1||isNaN(v)){err.push('Nota ignorada: '+f);return}const c=Math.min(10,Math.max(0,v));
+   if(kl==='p1'||kl==='parcial')r.a=c;else if(kl==='p2'||kl==='bimestral')r.p2=c;else if(kl!=='formativa'&&kl!=='form')r.x.push({n:k.slice(0,30),v:c})});
+  rows.push(r)});
+ return{rows,fm,err}}
+function importar(){return `<div class="card"><h3>Importar notas</h3><textarea id="it2" rows="9" placeholder="BIM 1&#10;FORMATIVA: 6&#10;Matemática | P1: 7 | P2: 6,5 | Caderno: 0,5" oninput="itx=this.value">${esc(itx)}</textarea><div class="f"><select id="ipol"><option value="keep"${ipol==='keep'?' selected':''}>Manter notas que já existem</option><option value="rep"${ipol==='rep'?' selected':''}>Substituir notas existentes</option></select><button class="btn" onclick="conferir()">Conferir</button></div></div>${imsg}${ip?preview():''}`}
+const preview=()=>`<div class="card"><h3>Conferir antes de importar</h3>${ip.rows.map(r=>`<div class="li"><span><b>${esc(r.n)}</b> <small>${r.bm}º bim${S.subs.some(s=>norm(s.n)===norm(r.n))?'':' · matéria nova'}</small></span><small>${[r.a!=null?'P1 '+f1(r.a):'',r.p2!=null?'P2 '+f1(r.p2):'',...r.x.map(z=>esc(z.n)+' +'+f1(z.v))].filter(Boolean).join(' · ')}</small></div>`).join('')}${Object.keys(ip.fm).map(b=>`<div class="li"><span>Formativa ${b}º bim</span><b>${f1(ip.fm[b])}</b></div>`).join('')}${ip.err.map(e=>`<div class="al warn">${esc(e)}</div>`).join('')}<div class="f"><button class="btn" onclick="aplicar()">Confirmar importação</button><button class="chip" onclick="ip=null;render()">Cancelar</button></div></div>`;
+function conferir(){itx=V('#it2');ipol=V('#ipol');ip=parseImp(itx);imsg='';if(!ip.rows.length&&!Object.keys(ip.fm).length){imsg='<div class="al bad">Não encontrei notas nesse texto. Confira o formato do exemplo.</div>';ip=null}render()}
+function aplicar(){const keep=ipol==='keep';let n=0;
+ ip.rows.forEach(r=>{let s=S.subs.find(x=>norm(x.n)===norm(r.n));if(!s){s={id:uid(),n:r.n,pr:'',c:COL[S.subs.length%COL.length],g:{},at:{}};S.subs.push(s)}
+  const o=s.g[r.bm]=s.g[r.bm]||{};
+  [['a',r.a],['b',r.p2]].forEach(([k,v])=>{if(v!=null&&(!keep||o[k]==null)){o[k]=v;n++}});
+  r.x.forEach(z=>{o.x=o.x||[];const i=o.x.findIndex(y=>norm(y.n)===norm(z.n));if(i<0){o.x.push(z);n++}else if(!keep){o.x[i].v=z.v;n++}})});
+ Object.keys(ip.fm).forEach(b=>{if(!keep||S.fm[b]==null){S.fm[b]=ip.fm[b];n++}});
+ save();imsg=`<div class="al ok">Importado: ${n} nota(s) gravada(s). Veja no Boletim.</div>`;ip=null;itx='';render()}
+const SB='https://tdudpxsuabceuxybkmdz.supabase.co',KEY='sb_publishable_UZl05uK-CNz5ZxbH7A7ibQ_urSzTWpA',SK='stzblue.sb';
+let ses=null,U=null,am='in',aerr='',ainfo='',sync='',tm=null,okS=false,rtk=null;
+async function api(path,o={}){const h={apikey:KEY,'Content-Type':'application/json',...(o.h||{})};if(o.t)h.Authorization='Bearer '+o.t;
+ const r=await fetch(SB+path,{method:o.method,body:o.body,headers:h});let j=null;try{j=await r.json()}catch(x){}
+ if(!r.ok)throw new Error((j&&(j.msg||j.error_description||j.message||j.error))||'Erro '+r.status);return j}
+const pt=m=>/invalid login/i.test(m)?'E-mail ou senha incorretos.':/not confirmed/i.test(m)?'Confirme seu e-mail pelo link que enviamos antes de entrar.':/already/i.test(m)?'Este e-mail já tem conta.':/rate limit|too many|seconds/i.test(m)?'Muitas tentativas. Espere um minuto e tente de novo.':/failed to fetch|network/i.test(m)?'Sem conexão com o servidor.':/same password|different from/i.test(m)?'Escolha uma senha diferente da anterior.':m;
+const putS=o=>{U=o;try{localStorage.setItem(SK,JSON.stringify(o))}catch(x){}};
+const tokens=j=>({at:j.access_token,rt:j.refresh_token,uid:j.user.id,email:j.user.email,exp:Date.now()+(j.expires_in||3600)*1000-60000});
+async function fresh(){if(Date.now()>U.exp){const j=await api('/auth/v1/token?grant_type=refresh_token',{method:'POST',body:JSON.stringify({refresh_token:U.rt})});putS(tokens(j))}return U.at}
+const g=id=>$(id)?V(id):'';
+function auth(){const up=am==='up',rc=am==='rec',nw=am==='new';
+ return `<div class="card" style="margin-top:24px"><h3>${up?'Criar conta':rc?'Recuperar senha':nw?'Nova senha':'Entrar'}</h3>${nw?'':'<label><small>E-mail</small><input id="ae" type="email" inputmode="email" autocomplete="email"></label>'}${rc?'':`<label><small>${nw?'Nova senha':'Senha'}</small><input id="ap" type="password" autocomplete="${up||nw?'new-password':'current-password'}"></label>`}${up||nw?'<label><small>Confirmar senha</small><input id="ac" type="password" autocomplete="new-password"></label>':''}${ainfo?`<div class="al ok">${esc(ainfo)}</div>`:''}${aerr?`<div class="al bad">${esc(aerr)}</div>`:''}<button class="btn" style="width:100%;margin-top:6px" onclick="doAuth()">${up?'Criar conta':rc?'Enviar link':nw?'Salvar nova senha':'Entrar'}</button>${nw?'':`<p class="empty">${am==='in'?`<button class="chip" onclick="am='rec';aerr='';ainfo='';render()">Esqueci minha senha</button> `:''}<small>${up?'Já tem conta?':rc?'Lembrou a senha?':'Ainda não tem conta?'}</small> <button class="chip" onclick="am='${up||rc?'in':'up'}';aerr='';ainfo='';render()">${up||rc?'Entrar':'Criar conta'}</button></p>`}</div>`}
+async function doAuth(){const e=g('#ae').trim().toLowerCase(),p=g('#ap'),c=g('#ac');aerr='';ainfo='';
+ try{
+  if(am!=='new'&&!/^\S+@\S+\.\S+$/.test(e))throw new Error('Digite um e-mail válido.');
+  if(am==='rec'){await api('/auth/v1/recover?redirect_to='+encodeURIComponent(location.origin+location.pathname),{method:'POST',body:JSON.stringify({email:e})});ainfo='Se esse e-mail tiver conta, enviamos um link para redefinir a senha. Veja também o spam.';am='in'}
+  else{
+   if(p.length<6)throw new Error('A senha precisa ter pelo menos 6 caracteres.');
+   if((am==='up'||am==='new')&&p!==c)throw new Error('As senhas não são iguais.');
+   if(am==='in')return await start(tokens(await api('/auth/v1/token?grant_type=password',{method:'POST',body:JSON.stringify({email:e,password:p})})));
+   if(am==='up'){const j=await api('/auth/v1/signup',{method:'POST',body:JSON.stringify({email:e,password:p})});if(j.access_token)return await start(tokens(j));ainfo='Enviamos um link de confirmação para '+e+'. Confirme o e-mail e depois entre.';am='in'}
+   else{await api('/auth/v1/user',{method:'PUT',t:rtk,body:JSON.stringify({password:p})});ainfo='Senha alterada! Entre com a nova senha.';am='in'}}
+ }catch(x){aerr=pt(x.message)}
+ render();if($('#ae'))$('#ae').value=e}
+async function start(t){putS(t);ses=t.email;$('#app').innerHTML='<div class="card empty">Carregando seus dados…</div>';await pull();tab='painel';render()}
+async function pull(){K='stzblue.d.'+U.uid;
+ try{const at=await fresh(),r=await api('/rest/v1/stz_data?select=data&user_id=eq.'+U.uid,{t:at});okS=true;
+  if(r.length){localStorage.setItem(K,JSON.stringify(r[0].data));load();sync='ok';return}
+  if(!localStorage.getItem(K)){const o=localStorage.getItem('stzblue.d.'+U.email)||localStorage.getItem('stzblue.v1');if(o)localStorage.setItem(K,o)}
+  load();push(true)}
+ catch(x){if(/refresh|jwt|token/i.test(String(x.message))){ses=null;U=null;try{localStorage.removeItem(SK)}catch(y){}}else{load();sync='off'}}}
+function push(now){if(!okS||!U)return;sync='...';clearTimeout(tm);tm=setTimeout(async()=>{try{const at=await fresh();await api('/rest/v1/stz_data?on_conflict=user_id',{method:'POST',t:at,h:{Prefer:'resolution=merge-duplicates,return=minimal'},body:JSON.stringify({user_id:U.uid,data:S,updated_at:new Date().toISOString()})});sync='ok'}catch(x){sync='off'}},now?0:700)}
+const SY=()=>sync==='ok'?ic('cloud',15)+' Sincronizado':sync==='off'?ic('warn',15)+' Sem conexão: recarregue a página':ic('cloud',15)+' Salvando…';
+function logout(){if(U)api('/auth/v1/logout',{method:'POST',t:U.at}).catch(()=>{});ses=null;U=null;S=null;okS=false;dwo=false;try{localStorage.removeItem(SK)}catch(x){}am='in';render()}
+document.addEventListener('click',e=>{if(!e.target.closest('.rt'))$('#menu').hidden=true});
+function render(){gr();applyTheme();
+ if(!ses){$('#ttl').textContent='STZBLUE';$('#yl').textContent='';$('#hm').style.display='none';$('#bell').style.display='none';$('#dots').style.display='none';$('#menu').hidden=true;$('#dw').className='dw';$('#dw').innerHTML='';$('#app').innerHTML=auth();return}
+ const n=alerts().length,t=TABS.find(x=>x[0]===tab);
+ $('#hm').style.display='';$('#hm').innerHTML=ic('menu',22);$('#ttl').textContent=t?t[1]:tab==='config'?'Configurações':'Importar notas';$('#yl').textContent=S.yr+' · '+(S.yr-2025)+'º ano';
+ $('#bell').style.display='';$('#dots').style.display='';$('#bell').className=n?'al':'';$('#bell').innerHTML=ic('bell',16)+(n?' '+n:'');
+ $('#dw').className='dw'+(dwo?' on':'');$('#dw').innerHTML=drawer();
+ $('#app').innerHTML=({painel,importar,config,materias,boletim,formativa,desempenho,horario,agenda,perfil})[tab]()+(mq&&(tab==='boletim'||tab==='formativa')?modal():'')+(hq&&(tab==='horario'||tab==='painel')?hmodal():'')+(sq&&tab==='materias'?smodal():'')+(ash&&tab==='agenda'?sheet():'');
+ if(mq&&mq.step===2&&$('#mv'))$('#mv').focus();if(hq&&hq.step===2&&$('#hn'))$('#hn').focus();$('#dots').innerHTML=ic('dots',20);$('#menu').innerHTML=`<button onclick="go('importar')">${ic('down',18)} Importar notas</button><button onclick="go('config')">${ic('cfg',18)} Configurações</button>`}
+(async()=>{const h=location.hash;
+ if(h.includes('type=recovery')){rtk=new URLSearchParams(h.slice(1)).get('access_token');am='new';history.replaceState(null,'',location.pathname)}
+ else if(h.includes('error_description')){aerr='O link expirou ou é inválido. Peça um novo em "Esqueci minha senha".';am='rec';history.replaceState(null,'',location.pathname)}
+ else{try{const o=JSON.parse(localStorage.getItem(SK));if(o&&o.rt){U=o;ses=o.email;$('#app').innerHTML='<div class="card empty">Carregando…</div>';await pull()}}catch(x){}}
+ render()})();
+</script></body></html>
